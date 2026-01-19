@@ -4,28 +4,41 @@ import java.util.*;
 
 public class Sklad {
 
-    private List<PCKomponent> komponenty = new ArrayList<>();
+    private Map<PCKomponent, Integer> inventar = new HashMap<>();
 
-    public void pridajKomponent(PCKomponent komponent) {
-        komponenty.add(komponent);
+    public void pridajKomponent(PCKomponent komponent, int pocet) {
+        inventar.put(
+                komponent,
+                inventar.getOrDefault(komponent, 0) + pocet
+        );
     }
 
-    public void odstranKomponent(PCKomponent komponent) {
-        komponenty.remove(komponent);
+    public boolean odstranKomponent(PCKomponent komponent) {
+        if (!inventar.containsKey(komponent)) {
+            return false;
+        }
+
+        int pocet = inventar.get(komponent);
+        if (pocet > 1) {
+            inventar.put(komponent, pocet - 1);
+        } else {
+            inventar.remove(komponent);
+        }
+        return true;
     }
 
-    public List<PCKomponent> getKomponenty() {
-        return komponenty;
+    public Map<PCKomponent, Integer> getInventar() {
+        return inventar;
     }
 
-    public List<PCKomponent> getKomponentyPodlaKategorie(Kategoria kategoria) {
-        List<PCKomponent> vysledok = new ArrayList<>();
-        for (PCKomponent k : komponenty) {
-            if (k.getKategoria() == kategoria) {
-                vysledok.add(k);
+    public Map<PCKomponent, Integer> getKomponentyPodlaKategorie(Kategoria kategoria) {
+        Map<PCKomponent, Integer> vysledok = new HashMap<>();
+
+        for (Map.Entry<PCKomponent, Integer> entry : inventar.entrySet()) {
+            if (entry.getKey().getKategoria() == kategoria) {
+                vysledok.put(entry.getKey(), entry.getValue());
             }
         }
         return vysledok;
     }
 }
-
