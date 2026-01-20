@@ -1,5 +1,7 @@
 package sk.spse.pcservis.model;
 
+import java.util.Objects;
+
 public class PCKomponent {
 
     private String nazov;
@@ -28,5 +30,18 @@ public class PCKomponent {
     public String toString() {
         return nazov + " | " + kategoria + " | " + cena + " €";
     }
-}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PCKomponent)) return false;
+        PCKomponent that = (PCKomponent) o;
+        return Objects.equals(nazov, that.nazov)
+                && kategoria == that.kategoria;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nazov, kategoria);
+    }
+}
