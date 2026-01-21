@@ -1,5 +1,7 @@
 package sk.spse.pcservis.ui;
-import com.sun.source.doctree.EscapeTree;
+
+import sk.spse.pcservis.model.PCKomponent;
+import sk.spse.pcservis.model.PCServis;
 import sk.spse.pcservis.model.Sklad;
 
 import java.util.InputMismatchException;
@@ -7,9 +9,12 @@ import java.util.Scanner;
 
 public class TextoveUI {
     private Sklad sklad;
+    private PCServis pcServis;
     private Scanner sc = new Scanner(System.in);
     public TextoveUI(Sklad sklad) {
         this.sklad = sklad;
+        this.pcServis= new PCServis(sklad);
+
     }
 
     private void vypisHlavneMenu() {
@@ -24,11 +29,16 @@ public class TextoveUI {
         System.out.print("Voľba: ");
     }
 
-    public void VypisiSklad() {
-        System.out.println(sklad.getKomponenty());
+    public void test (){
+        pcServis.vypisInventar();
     }
 
-    public void sputsiRozhranie(){
+    public void pridajKomponent(PCKomponent zostava) {
+        pcServis.pridajKomponent((zostava));
+    }
+
+
+    public void spustitRozhranie(){
         System.out.println("=====================================");
         System.out.println("             PC SERVIS               ");
         System.out.println("=====================================\n");
