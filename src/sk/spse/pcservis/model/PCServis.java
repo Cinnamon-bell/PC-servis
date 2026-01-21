@@ -6,7 +6,7 @@ public class PCServis {
     private Sklad sklad;
 
     public PCServis(Sklad sklad) {
-        this.sklad = sklad;
+        this.sklad = new Sklad();
     }
 
     public PCZostava vytvorZostavuAutomaticky(double maxSuma) {
@@ -28,6 +28,10 @@ public class PCServis {
         return zostava;
     }
 
+    public void pridajKomponent(PCKomponent komponent) {
+        sklad.pridajKomponent(komponent,1);
+    }
+
     public void predajZostavu(PCZostava zostava) {
         for (PCKomponent k : zostava.getKomponenty()) {
             sklad.odstranKomponent(k);
@@ -47,4 +51,3 @@ public class PCServis {
         }
     }
 }
-
