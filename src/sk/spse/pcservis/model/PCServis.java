@@ -4,6 +4,7 @@ import java.util.*;
 public class PCServis {
 
     private Sklad sklad;
+    private PCZostava zostava = new PCZostava();
 
     public PCServis(Sklad sklad) {
         this.sklad = new Sklad();
@@ -28,6 +29,10 @@ public class PCServis {
         return zostava;
     }
 
+    public PCZostava getZostava() {
+        return zostava;
+    }
+
     public void pridajKomponent(PCKomponent komponent) {
         sklad.pridajKomponent(komponent,1);
     }
@@ -36,6 +41,14 @@ public class PCServis {
         for (PCKomponent k : zostava.getKomponenty()) {
             sklad.odstranKomponent(k);
         }
+    }
+
+    public Map<PCKomponent, Integer> getKomponentyPodlaKategorie(Kategoria kategoria) {
+        return sklad.getKomponentyPodlaKategorie(kategoria);
+    }
+
+    public Map<PCKomponent, Integer> getInventar() {
+        return sklad.getInventar();
     }
 
     public void vypisInventar() {

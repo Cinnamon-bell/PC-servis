@@ -36,11 +36,6 @@ public class Main {
         ui.pridajKomponent(new PCKomponent("Lian Li Lancool 216", 105.00, Kategoria.CASE));
 
 
-
-
-        ui.pridajKomponent(new PCKomponent("Corsair 4000D Airflow", 95.00, Kategoria.CASE));
-
-
         ui.spustitRozhranie();
     }
     public static void main(String[] args) {
