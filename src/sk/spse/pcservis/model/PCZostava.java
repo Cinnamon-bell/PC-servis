@@ -4,16 +4,47 @@ import java.util.*;
 
 public class PCZostava {
 
-    private List<PCKomponent> komponenty = new ArrayList<>();
+    private List<PCKomponent> komponenty;
 
-    public void pridajKomponent(PCKomponent komponent) {
-        komponenty.add(komponent);
+    // KONŠTRUKTOR – vytvorenie prázdnej PC zostavy
+    public PCZostava() {
+        this.komponenty = new ArrayList<>();
     }
 
+    // Manuálne pridanie komponentu do zostavy
+    public boolean pridajKomponent(PCKomponent komponent) {
+
+        // kontrola, či už existuje komponent rovnakej kategórie
+        for (PCKomponent k : komponenty) {
+            if (k.getKategoria() == komponent.getKategoria()) {
+                return false; // napr. už existuje CPU
+            }
+        }
+
+        komponenty.add(komponent);
+        return true;
+    }
+
+    // Odstránenie komponentu zo zostavy
+    public boolean odstranKomponent(Kategoria kategoria) {
+        Iterator<PCKomponent> iterator = komponenty.iterator();
+
+        while (iterator.hasNext()) {
+            PCKomponent k = iterator.next();
+            if (k.getKategoria() == kategoria) {
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Získanie zoznamu komponentov
     public List<PCKomponent> getKomponenty() {
         return komponenty;
     }
 
+    // Výpočet celkovej ceny zostavy
     public double getCelkovaCena() {
         double suma = 0;
         for (PCKomponent k : komponenty) {
@@ -22,12 +53,4 @@ public class PCZostava {
         return suma;
     }
 
-    public void vypisZostavu() {
-        System.out.println("=== PC ZOSTAVA ===");
-        for (PCKomponent k : komponenty) {
-            System.out.println(k);
-        }
-        System.out.println("Celková cena: " + getCelkovaCena() + " €");
-    }
 }
-
