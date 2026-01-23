@@ -6,6 +6,7 @@ public class Sklad {
 
     private Map<PCKomponent, Integer> inventar = new HashMap<>();
 
+
     public void pridajKomponent(PCKomponent komponent, int pocet) {
         inventar.put(
                 komponent,
