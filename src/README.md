@@ -27,7 +27,9 @@ Program sa spustí v konzole a zobrazí textové menu.**
 > to sa este dokonci
 
 > ## UML Class Diagram
-> url ak bude , mozno aj prtSc
+> https://mermaid.ai/app/projects/913eb1f7-f572-4652-aaff-016fd66ef545/diagrams/34a411f0-524c-4766-aa17-af76a83b6edb/version/v0.1/edit
+> 
+> https://mermaid.ai/app/projects/913eb1f7-f572-4652-aaff-016fd66ef545/diagrams/1b78c0b8-7784-415e-8432-f0da8e001477/version/v0.1/edit
 
 > ## Rozdelenie zodpovedností
 > ### *postupne sa toto bude doplnat* ###
