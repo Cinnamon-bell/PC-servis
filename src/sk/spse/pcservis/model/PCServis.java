@@ -33,14 +33,24 @@ public class PCServis {
         return zostava;
     }
 
+    public boolean setZostava(PCZostava zostava){
+        this.zostava = zostava;
+        return true;
+    }
+
     public void pridajKomponent(PCKomponent komponent) {
         sklad.pridajKomponent(komponent,1);
     }
+    public void odoberKomponent(PCKomponent komponent) { sklad.odstranKomponent(komponent);}
 
     public void predajZostavu(PCZostava zostava) {
         for (PCKomponent k : zostava.getKomponenty()) {
             sklad.odstranKomponent(k);
         }
+    }
+
+    public boolean odoberKomponent(Kategoria kat) {
+        return zostava.odstranKomponent(kat);
     }
 
     public Map<PCKomponent, Integer> getKomponentyPodlaKategorie(Kategoria kategoria) {

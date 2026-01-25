@@ -17,6 +17,7 @@ public class Main {
         ui.pridajKomponent(new PCKomponent("Intel Core i5-14400F", 185.00, Kategoria.CPU));
         ui.pridajKomponent(new PCKomponent("AMD Ryzen 5 7600", 205.00, Kategoria.CPU));
 
+
         ui.pridajKomponent(new PCKomponent("Kingston Fury 16GB DDR5-6000", 68.00, Kategoria.RAM));
         ui.pridajKomponent(new PCKomponent("Corsair Vengeance 32GB DDR5-6000", 135.00, Kategoria.RAM));
 
