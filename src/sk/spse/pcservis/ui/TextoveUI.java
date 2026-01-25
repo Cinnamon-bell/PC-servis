@@ -21,7 +21,8 @@ public class TextoveUI {
         System.out.println("4. Zobraziť aktuálnu zostavu");
         System.out.println("5. Výpis celého skladu");
         System.out.println("6. Výpis skladu podľa kategórie");
-        System.out.println("7. Koniec");
+        System.out.println("7. Pridat komponent na skald");
+        System.out.println("8. Koniec");
         System.out.print("Voľba: ");
     }
 
@@ -58,11 +59,16 @@ public class TextoveUI {
             }
         }
     }
-    public void KupaZostavy(){
-        for (PCKomponent k: pcServis.getZostava().getKomponenty()){
-            pcServis.odoberKomponent(k);
+    public void PredajZostavy(){
+        if (!pcServis.getZostava().getKomponenty().isEmpty()) {
+            for (PCKomponent k : pcServis.getZostava().getKomponenty()) {
+                pcServis.odoberKomponent(k);
+            }
+            pcServis.setZostava(new PCZostava());
+            System.out.println("Zostava bola predana");
+        }else {
+            System.out.println("V zostave nemas zidne komponenty");
         }
-        System.out.println("Dakujeme za kupu");
     }
     public void VypisSkladuKat(){
         while (true){
@@ -77,7 +83,7 @@ public class TextoveUI {
                 volba = sc.nextInt();
                 sc.nextLine();
             }catch(InputMismatchException e){
-                System.out.println("Nesprávna voľba");
+                System.out.println("Zadajte cislo!");
                 sc.nextLine();
                 continue;
             }
@@ -85,15 +91,19 @@ public class TextoveUI {
                 System.out.printf("\n---%s---%n",  Kategoria.values()[volba-1]);
                 Map<PCKomponent, Integer> inventarKat;
                 inventarKat = pcServis.getKomponentyPodlaKategorie(Kategoria.values()[volba-1]);
-                for (Map.Entry<PCKomponent, Integer> entry: inventarKat.entrySet()){
-                    System.out.printf("%s - %s ks%n",  entry.getKey().toString(), entry.getValue());
+                if (!inventarKat.isEmpty()) {
+                    for (Map.Entry<PCKomponent, Integer> entry : inventarKat.entrySet()) {
+                        System.out.printf("%s - %s ks%n", entry.getKey().toString(), entry.getValue());
+                    }
+                }else {
+                    System.out.println("---Z tejto kategorie nemame ziadny komponent na sklade---");
                 }
                 System.out.println("-------------------------\n");
             }else if (volba == Kategoria.values().length+1){
                 return;
             }
             else {
-                System.out.println("Nespravna volba");
+                System.out.println("Neplatna volba");
             }
         }
     }
@@ -104,22 +114,27 @@ public class TextoveUI {
             System.out.println("Vyberte si komponent");
             Map<PCKomponent, Integer> inventarKat = this.pcServis.getKomponentyPodlaKategorie(kategoria);
             int numb = 1;
-            for(Map.Entry<PCKomponent, Integer> entry: inventarKat.entrySet()){
-                System.out.printf("%s"+". "+ "%s - %s ks%n", numb++ ,entry.getKey().toString(), entry.getValue());
+            if (!inventarKat.isEmpty()) {
+                for (Map.Entry<PCKomponent, Integer> entry : inventarKat.entrySet()) {
+                    System.out.printf("%s" + ". " + "%s - %s ks%n", numb++, entry.getKey().toString(), entry.getValue());
+                }
+            }else {
+                System.out.println("---Z tejto kategorie nemame ziadny komponent na sklade---");
             }
             System.out.printf("\n%s"+ ". Návrat do kategorií%n", inventarKat.size()+1);
             System.out.printf("%s"+ ". Vypisat aktualnu zostavu%n", inventarKat.size()+2);
             System.out.printf("%s"+ ". Návrat do menu%n", inventarKat.size()+3);
             System.out.print("Voľba: ");
-            int volba = 0;
+            int volba;
             try{
                 volba = sc.nextInt();
                 sc.nextLine();
             }catch(InputMismatchException e){
                 System.out.println("Zadajte číslo!");
                 sc.nextLine();
+                continue;
             }
-            if (volba != 0 && volba <= inventarKat.size()+3) {
+            if (volba <= inventarKat.size()+3) {
                 if (volba == inventarKat.size() + 1) {
                     return true;
                 } else if (volba == inventarKat.size() + 2) {
@@ -139,7 +154,7 @@ public class TextoveUI {
                     }
                 }
             }else {
-                System.out.println("Nespravna volba");
+                System.out.println("Neplatna volba");
             }
         }
 
@@ -167,7 +182,7 @@ public class TextoveUI {
                 volba = sc.nextInt();
                 sc.nextLine();
             }catch(InputMismatchException e){
-                System.out.println("Nespravna volba");
+                System.out.println("Zadajte cislo!");
                 sc.nextLine();
                 continue;
             }
@@ -179,7 +194,7 @@ public class TextoveUI {
                     }
                 }
                 case 3 -> {return;}
-                default ->  System.out.println("Nespravna volba");
+                default ->  System.out.println("Neplatna volba");
             }
         }
     }
@@ -206,17 +221,18 @@ public class TextoveUI {
                 sc.nextLine();
                 continue;
             }
-            if (volba == pcServis.getZostava().getKomponenty().size()+1){
-                break;
-            }else if (volba > pcServis.getZostava().getKomponenty().size()+1){
-                System.out.println("Nespravna volba");
+            if (volba <= pcServis.getZostava().getKomponenty().size()+1) {
+                if (volba == pcServis.getZostava().getKomponenty().size() + 1) {
+                    break;
+                }
+                Kategoria kat = Kategoria.values()[volba - 1];
+                if (pcServis.odoberKomponent(kat)) {
+                    System.out.println("Komponentu bol zo zostavy odstraneni");
+                    break;
+                }
+            }else {
+                System.out.println("Neplatna volba");
             }
-            Kategoria kat = Kategoria.values()[volba-1];
-            if (pcServis.odoberKomponent(kat)) {
-                System.out.println("Komponentu bol zo zostavy odstraneni");
-                break;
-            }
-
         }
     }
 
@@ -262,12 +278,45 @@ public class TextoveUI {
                         }
                     }
                 }
+            }else {
+                System.out.println("Neplatna volba");
             }
         }
     }
 
-    public void pridajKomponent(PCKomponent zostava) {
-        pcServis.pridajKomponent((zostava));
+    public void pridajKomponentTest(PCKomponent komponent) {
+        pcServis.pridajKomponent((komponent));
+    }
+
+    public void pridajKomp() {
+        Kategoria kat = null;
+        while (true) {
+            System.out.println("----Pridanie Komponentu do skladu---");
+            System.out.println("--- Vyberte si kategoriu---");
+            for (int i = 0; i < Kategoria.values().length; i++) {
+                System.out.printf("%s %s%n", i + 1 + ".", Kategoria.values()[i]);
+            }
+            System.out.println("\n"+(Kategoria.values().length+1)+". Naspäť");
+            int volba;
+            try{
+                volba = sc.nextInt();
+                sc.nextLine();
+            }catch(InputMismatchException e){
+                System.out.println("Zadajte cislo!");
+                sc.nextLine();
+                continue;
+            }
+            if (volba <= Kategoria.values().length+1) {
+                if (volba == Kategoria.values().length+1) {
+                    return;
+                }
+                for (Kategoria k: Kategoria.values()) {
+                    if (k == Kategoria.values()[volba-1]) {
+                        kat = k;
+                    }
+                }
+            }
+        }
     }
 
     public void autoZostava(){
@@ -316,8 +365,8 @@ public class TextoveUI {
                     autoZostava();
                 }
                 case 3 -> {
-                    System.out.println("\nVybral si 'Kúpiť aktuálnu zostavu'\n");
-                    KupaZostavy();
+                    System.out.println("\nVybral si 'Predať aktuálnu zostavu'\n");
+                    PredajZostavy();
                 }
                 case 4 -> {
                     System.out.println("\nVybral si 'Zobraziť aktuálnu zostavu'\n");
@@ -332,10 +381,14 @@ public class TextoveUI {
                     VypisSkladuKat();
                 }
                 case 7 -> {
+                    System.out.println("\nVybral si 'Pridat komponent na sklad'\n");
+                    pridajKomp();
+                }
+                case 8 -> {
                     System.out.println("Koniec programu");
                     return;
                 }
-                default -> System.out.println("Neplatná voľba, skúste 1–7.");
+                default -> System.out.println("Neplatná voľba");
             }
         }
     }
