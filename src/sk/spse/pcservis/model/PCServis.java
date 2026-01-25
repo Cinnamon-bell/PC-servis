@@ -51,9 +51,8 @@ public class PCServis {
                 zostatok = aktualnyBudget - vybrany.getCena();
                 zostavajuciBudget -= vybrany.getCena();
             }
-            // ak sa nič nekúpi → celý podiel sa prenesie
             else {
-                zostatok += aktualnyBudget;
+                zostatok += zakladnyPodiel;
             }
         }
 
