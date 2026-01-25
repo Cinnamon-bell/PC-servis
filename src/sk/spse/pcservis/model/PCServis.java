@@ -53,7 +53,6 @@ public class PCServis {
             }
             // ak sa nič nekúpi → celý podiel sa prenesie
             else {
-                zostava.pridajKomponent(vybrany);
                 zostatok += aktualnyBudget;
             }
         }
