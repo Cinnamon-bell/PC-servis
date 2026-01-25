@@ -27,12 +27,9 @@ public class PCZostava {
 
     // Odstránenie komponentu zo zostavy
     public boolean odstranKomponent(Kategoria kategoria) {
-        Iterator<PCKomponent> iterator = komponenty.iterator();
-
-        while (iterator.hasNext()) {
-            PCKomponent k = iterator.next();
+        for (PCKomponent k : komponenty) {
             if (k.getKategoria() == kategoria) {
-                iterator.remove();
+                komponenty.remove(k);
                 return true;
             }
         }

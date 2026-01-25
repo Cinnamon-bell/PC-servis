@@ -11,36 +11,82 @@ public class PCServis {
     }
 
     public PCZostava vytvorZostavuAutomaticky(double maxSuma) {
-        PCZostava zostava = new PCZostava();
-        double suma = 0;
 
-        for (Kategoria kategoria : Kategoria.values()) {
+        PCZostava zostava = new PCZostava();
+
+        Kategoria[] kategorie = Kategoria.values();
+        int pocetKategorii = kategorie.length;
+
+        double zostavajuciBudget = maxSuma;
+        double zakladnyPodiel = maxSuma / pocetKategorii;
+
+        double zostatok = 0;
+
+        for (Kategoria kategoria : kategorie) {
+
+            double aktualnyBudget = zakladnyPodiel + zostatok;
+
             Map<PCKomponent, Integer> komponenty =
                     sklad.getKomponentyPodlaKategorie(kategoria);
 
-            for (PCKomponent k : komponenty.keySet()) {
-                if (suma + k.getCena() <= maxSuma) {
-                    zostava.pridajKomponent(k);
-                    suma += k.getCena();
-                    break; // 1 komponent z kategórie
+            List<PCKomponent> zoradene =
+                    new ArrayList<>(komponenty.keySet());
+
+            zoradene.sort(
+                    Comparator.comparingDouble(PCKomponent::getCena).reversed()
+            );
+
+            PCKomponent vybrany = null;
+
+            for (PCKomponent k : zoradene) {
+                if (k.getCena() <= aktualnyBudget) {
+                    vybrany = k;
+                    break;
                 }
             }
+
+            if (vybrany != null) {
+                zostava.pridajKomponent(vybrany);
+
+                zostatok = aktualnyBudget - vybrany.getCena();
+                zostavajuciBudget -= vybrany.getCena();
+            }
+            // ak sa nič nekúpi → celý podiel sa prenesie
+            else {
+                zostava.pridajKomponent(vybrany);
+                zostatok += aktualnyBudget;
+            }
         }
+
         return zostava;
+    }
+
+    public Sklad getSklad() {
+        return sklad;
     }
 
     public PCZostava getZostava() {
         return zostava;
     }
 
+    public boolean setZostava(PCZostava zostava){
+        this.zostava = zostava;
+        return true;
+    }
+
     public void pridajKomponent(PCKomponent komponent) {
         sklad.pridajKomponent(komponent,1);
     }
+    public void odoberKomponent(PCKomponent komponent) { sklad.odstranKomponent(komponent);}
 
     public void predajZostavu(PCZostava zostava) {
         for (PCKomponent k : zostava.getKomponenty()) {
             sklad.odstranKomponent(k);
         }
+    }
+
+    public boolean odoberKomponent(Kategoria kat) {
+        return zostava.odstranKomponent(kat);
     }
 
     public Map<PCKomponent, Integer> getKomponentyPodlaKategorie(Kategoria kategoria) {
