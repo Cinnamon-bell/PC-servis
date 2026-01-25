@@ -61,6 +61,9 @@ public class PCServis {
         return zostava;
     }
 
+    public Sklad getSklad() {
+        return sklad;
+    }
 
     public PCZostava getZostava() {
         return zostava;
