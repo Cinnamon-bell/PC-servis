@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sk.spse.pcservis.ui.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sk.spse.pcservis.ui.Controller">
     <top>
         <Label alignment="CENTER" prefHeight="27.0" prefWidth="234.0" text="PC Servis" BorderPane.alignment="CENTER">
             <BorderPane.margin>
@@ -83,21 +83,6 @@
         </VBox>
     </left>
    <center>
-      <TableView prefHeight="395.0" prefWidth="548.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-            <TableColumn prefWidth="75.0" text="Column X" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-   </center>
-   <right>
       <VBox alignment="TOP_CENTER" prefHeight="395.0" prefWidth="236.0" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" text="Zostava">
@@ -119,5 +104,5 @@
             </TableView>
          </children>
       </VBox>
-   </right>
+   </center>
 </BorderPane>
