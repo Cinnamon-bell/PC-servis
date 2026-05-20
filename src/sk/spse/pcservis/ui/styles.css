@@ -1,3 +1,32 @@
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color:  rgb(57, 62, 70);
 }
+
+.tab-pane .tab {
+    -fx-background-color:  rgb(223, 208, 184);
+}
+
+.table-view .column-header {
+    -fx-background-color:  rgb(148, 137, 121);
+}
+
+.titled-pane .title {
+    -fx-background-color: rgb(148, 137, 121);
+}
+
+.text-field {
+    -fx-background-color:  rgb(223, 208, 184);
+    -fx-text-fill: black;
+}
+
+.text-area .content {
+    -fx-background-color:  rgb(223, 208, 184);
+}
+
+.tree-view .tree-cell {
+    -fx-background-color: rgb(223, 208, 184);
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-shape: "";
+}
