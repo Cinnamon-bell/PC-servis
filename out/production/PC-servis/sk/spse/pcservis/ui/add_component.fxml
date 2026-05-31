@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+
+<VBox
+    prefWidth="480.0"
+    prefHeight="420.0"
+    spacing="20"
+    style="-fx-background-color: rgb(34, 40, 49); -fx-padding: 25;"
+    stylesheets="@styles.css"
+    xmlns="http://javafx.com/javafx/25"
+    xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- NADPIS -->
+    <Label
+        text="Pridať komponent"
+        textFill="#dfd0b8"
+        style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+
+    <Separator style="-fx-background-color: rgb(148, 137, 121);" />
+
+    <!-- FORMULÁR -->
+    <GridPane hgap="15" vgap="14">
+
+        <columnConstraints>
+            <ColumnConstraints minWidth="130" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="32" />
+            <RowConstraints minHeight="32" />
+            <RowConstraints minHeight="32" />
+            <RowConstraints minHeight="32" />
+            <RowConstraints minHeight="32" />
+        </rowConstraints>
+
+        <!-- Názov -->
+        <Label text="Názov:" textFill="#dfd0b8"
+               GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <TextField promptText="Napr. Ryzen 7 5800X"
+                   GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+        <!-- Kategória -->
+        <Label text="Kategória:" textFill="#dfd0b8"
+               GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <ComboBox prefWidth="250" promptText="Vyber kategóriu"
+                  style="-fx-background-color: rgb(148, 137, 121);"
+                  GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="CPU" />
+                    <String fx:value="RAM" />
+                    <String fx:value="SSD" />
+                    <String fx:value="GPU" />
+                    <String fx:value="MB" />
+                    <String fx:value="ZDROJ" />
+                    <String fx:value="CASE" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <!-- Cena -->
+        <Label text="Cena (€):" textFill="#dfd0b8"
+               GridPane.columnIndex="0" GridPane.rowIndex="2" />
+        <TextField promptText="Napr. 299"
+                   GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+        <!-- Počet kusov -->
+        <Label text="Počet kusov:" textFill="#dfd0b8"
+               GridPane.columnIndex="0" GridPane.rowIndex="3" />
+        <TextField promptText="Napr. 10"
+                   GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+        <!-- Výrobca -->
+        <Label text="Výrobca:" textFill="#dfd0b8"
+               GridPane.columnIndex="0" GridPane.rowIndex="4" />
+        <TextField promptText="Napr. AMD / NVIDIA / Samsung"
+                   GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+    </GridPane>
+
+    <Separator style="-fx-background-color: rgb(148, 137, 121);" />
+
+    <!-- TLAČIDLÁ -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Button
+            prefWidth="140"
+            text="Uložiť"
+            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" />
+        <Button
+            prefWidth="140"
+            text="Zrušiť"
+            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" />
+    </HBox>
+
+</VBox>
