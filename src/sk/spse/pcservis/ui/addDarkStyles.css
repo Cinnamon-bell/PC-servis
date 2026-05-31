@@ -1,0 +1,47 @@
+.root {
+    -fx-background-color: rgb(34, 40, 49);
+    -fx-padding: 25;
+}
+
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #dfd0b8;
+}
+
+
+.label {
+    -fx-text-fill: #dfd0b8;
+}
+
+
+.separator .line {
+    -fx-border-color: rgb(148, 137, 121);
+}
+
+
+.text-field {
+    -fx-background-color: rgb(148, 137, 121);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #eeeeee;
+}
+
+
+.combo-box {
+    -fx-background-color: rgb(148, 137, 121);
+}
+
+
+.button {
+    -fx-font-weight: bold;
+}
+
+.save-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.cancel-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}

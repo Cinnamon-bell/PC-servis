@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
+
 import sk.spse.pcservis.model.Sklad;
 import sk.spse.pcservis.ui.SkladProvider;
 
@@ -33,6 +35,11 @@ public class Application extends javafx.application.Application {
         }
 
         Scene scene = new Scene(root);
+
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource("lightStyles.css")).toExternalForm()
+        );
+
 
         stage.setTitle("Declarative Application 1");
         stage.setScene(scene);

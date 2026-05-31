@@ -14,6 +14,7 @@ import sk.spse.pcservis.model.*;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Controller pre primary.fxml
@@ -47,8 +48,13 @@ public class Controller {
     @FXML private TextArea  vypisZostavy;
     @FXML private TreeView<String> inventar_tree;
 
+
+    @FXML private Button themeButton;
+
     private Sklad sklad;
     private PCServis pcServis;
+
+    private boolean darkMode = false;
 
     private PCZostava aktualnaZostava = new PCZostava();
 
@@ -56,6 +62,20 @@ public class Controller {
         this.sklad = sklad;
         this.pcServis = new PCServis(sklad);
         initUI();
+    }
+
+    public void toggleTheme(Scene scene) {
+        scene.getStylesheets().clear();
+
+        String css = darkMode
+                ? "lightStyles.css"
+                : "darkStyles.css";
+
+        scene.getStylesheets().add(
+                Objects.requireNonNull(getClass().getResource(css)).toExternalForm()
+        );
+
+        darkMode = !darkMode;
     }
 
     private void initUI() {
@@ -84,6 +104,8 @@ public class Controller {
         MB_ComboBox.setOnAction(e    -> prepocitajCenu());
         ZDROJ_ComboBox.setOnAction(e -> prepocitajCenu());
         CASE_ComboBox.setOnAction(e  -> prepocitajCenu());
+
+        themeButton.setOnAction(e -> toggleTheme(themeButton.getScene()));
 
         aktualizujInventarTable();
         aktualizujInventarTree();
@@ -241,7 +263,12 @@ public class Controller {
             Stage dialog = new Stage();
             dialog.initModality(Modality.APPLICATION_MODAL);
             dialog.setTitle("Pridať komponent");
-            dialog.setScene(new Scene(root));
+            Scene newScene = new Scene(root);
+            String css = darkMode ? "addDarkStyles.css" : "addLightStyles.css";
+            newScene.getStylesheets().add(
+                    Objects.requireNonNull(getClass().getResource(css)).toExternalForm()
+            );
+            dialog.setScene(newScene);
             dialog.showAndWait();
 
         } catch (IOException e) {

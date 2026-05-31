@@ -1,0 +1,103 @@
+#hlavny {
+    -fx-background-color: #b1b1b1;
+}
+
+.tool-bar {
+    -fx-background-color: #D1D6E0;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.left-panel,
+.right-panel,
+#autBox {
+    -fx-background-color: #a1a1a1;
+}
+
+.price-value {
+    -fx-font-size: 18px;
+    -fx-text-fill: rgb(148, 137, 121);
+}
+
+.main-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.left-panel,
+.right-panel {
+    -fx-padding: 15;
+}
+
+.center-panel {
+    -fx-padding: 20;
+}
+
+.label {
+    -fx-text-fill: white;
+}
+
+.price-label {
+    -fx-text-fill: #d5d5d5;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+
+}
+
+
+.button {
+    -fx-background-color: #BFC6D4;
+}
+
+
+.combo-box {
+    -fx-background-color: #BFC6D4;
+}
+
+
+.text-field {
+    -fx-background-color: #D1D6E0;
+    -fx-text-fill: black;
+}
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-background-color: #a1a1a1;
+}
+
+.tab-pane .tab {
+    -fx-background-color: #D1D6E0;
+}
+
+
+.table-view {
+    -fx-background-color: #D1D6E0;
+}
+
+.table-view .column-header {
+    -fx-background-color: #BFC6D4;
+}
+
+
+.text-area,
+.text-area .content {
+    -fx-background-color: #D1D6E0;
+}
+
+
+.tree-view,
+.tree-view .tree-cell {
+    -fx-background-color: #D1D6E0;
+}
+
+
+.titled-pane .title {
+    -fx-background-color: #BFC6D4;
+}
+
+
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-shape: "";
+}

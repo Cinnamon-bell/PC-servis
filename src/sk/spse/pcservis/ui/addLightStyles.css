@@ -1,0 +1,46 @@
+.root {
+    -fx-background-color: #b1b1b1;
+    -fx-padding: 25;
+}
+
+.title-label {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+
+.label {
+    -fx-text-fill: white;
+}
+
+
+.separator .line {
+    -fx-border-color: #BFC6D4;
+}
+
+
+.text-field {
+    -fx-background-color: #BFC6D4;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: #eeeeee;
+}
+
+
+.combo-box {
+    -fx-background-color: #BFC6D4;
+}
+
+.button {
+    -fx-font-weight: bold;
+}
+
+.save-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.cancel-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+}
