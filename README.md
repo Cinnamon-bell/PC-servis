@@ -48,27 +48,27 @@ java sk.spse.pcservis.ui.UIMain
 ## Vývojový diagram metódy ulozit()
 ```mermaid
 flowchart TD
-    Start[Start: ulozit()] --> Load[Načítanie hodnôt z polí]
-    Load --> CheckRequired{Všetky povinné polia vyplnené?}
+    Start[Start: ulozit method] --> Load[Nacitanie hodnot z poli]
+    Load --> CheckRequired[Vsetky povinne polia vyplnene?]
     
-    CheckRequired -->|Nie| Error1[Zobraziť chybu: Vyplňte všetky polia]
+    CheckRequired -->|No| Error1[Zobrazit chybu: Vyplnte vsetky polia]
     Error1 --> End[Koniec]
     
-    CheckRequired -->|Áno| ParsePrice[Parsovanie ceny]
-    ParsePrice --> CheckPrice{Úspešné parsovanie?}
+    CheckRequired -->|Yes| ParsePrice[Parsovanie ceny]
+    ParsePrice --> CheckPrice[Uspech parsovania?]
     
-    CheckPrice -->|Nie| Error2[Zobraziť chybu: Neplatná cena]
+    CheckPrice -->|No| Error2[Zobrazit chybu: Neplatna cena]
     Error2 --> End
     
-    CheckPrice -->|Áno| CheckCount{Kladné celé číslo?}
+    CheckPrice -->|Yes| CheckCount[Kladne cele cislo?]
     
-    CheckCount -->|Nie| Error3[Zobraziť chybu: Neplatné množstvo]
+    CheckCount -->|No| Error3[Zobrazit chybu: Neplatne mnozstvo]
     Error3 --> End
     
-    CheckCount -->|Áno| Create[ Vytvoriť PCKomponent ]
-    Create --> AddToStorage[Pridať do skladu]
-    AddToStorage --> Refresh[Refresh UI]
-    Refresh --> Close[Zavrieť okno]
+    CheckCount -->|Yes| Create[Vytvorit PCKomponent]
+    Create --> Add[Pridat do skladu]
+    Add --> Refresh[Refresh UI]
+    Refresh --> Close[Zavriet okno]
     Close --> End
 ```
 
