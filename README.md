@@ -48,31 +48,28 @@ java sk.spse.pcservis.ui.UIMain
 ## Vývojový diagram metódy ulozit()
 ```mermaid
 flowchart TD
-    A[Začiatok: ulozit()] --> B[Načítať hodnoty z polí]
-    B --> C{nazov, cena, kategoria, pocet vyplnené?}
+    Start[Start: ulozit()] --> Load[Načítanie hodnôt z polí]
+    Load --> CheckRequired{Všetky povinné polia vyplnené?}
     
-    C -->|Nie| D[Zobraziť chybu: 'Vyplňte všetky povinné polia!']
-    D --> Z[Konec]
+    CheckRequired -->|Nie| Error1[Zobraziť chybu: Vyplňte všetky polia]
+    Error1 --> End[Koniec]
     
-    C -->|Áno| E[Očistiť a parsovať cenu]
-    E --> F{Úspešné parsovanie ceny?}
+    CheckRequired -->|Áno| ParsePrice[Parsovanie ceny]
+    ParsePrice --> CheckPrice{Úspešné parsovanie?}
     
-    F -->|Nie| G[Zobraziť chybu: 'Zadajte kladné číslo!']
-    G --> Z
+    CheckPrice -->|Nie| Error2[Zobraziť chybu: Neplatná cena]
+    Error2 --> End
     
-    F -->|Áno| H{Pocet je celé kladné číslo?}
+    CheckPrice -->|Áno| CheckCount{Kladné celé číslo?}
     
-    H -->|Nie| I[Zobraziť chybu: 'Zadajte celé kladné číslo!']
-    I --> Z
+    CheckCount -->|Nie| Error3[Zobraziť chybu: Neplatné množstvo]
+    Error3 --> End
     
-    H -->|Áno| J[Vytvoriť objekt PCKomponent]
-    J --> K[Pridať komponent do skladu cez sklad.pridajKomponent()]
-    K --> L[Spustiť callback refresh (ak existuje)]
-    L --> M[Zavrieť okno]
-    M --> Z[Konec]
-
-    style A fill:#4ade80
-    style Z fill:#4ade80
+    CheckCount -->|Áno| Create[ Vytvoriť PCKomponent ]
+    Create --> AddToStorage[Pridať do skladu]
+    AddToStorage --> Refresh[Refresh UI]
+    Refresh --> Close[Zavrieť okno]
+    Close --> End
 ```
 
 
