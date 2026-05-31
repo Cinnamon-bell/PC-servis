@@ -15,19 +15,20 @@
 <?import javafx.collections.FXCollections?>
 
 <VBox
-    prefWidth="480.0"
-    prefHeight="420.0"
-    spacing="20"
-    style="-fx-background-color: rgb(34, 40, 49); -fx-padding: 25;"
-    stylesheets="@styles.css"
-    xmlns="http://javafx.com/javafx/25"
-    xmlns:fx="http://javafx.com/fxml/1">
+        prefWidth="480.0"
+        prefHeight="420.0"
+        spacing="20"
+        style="-fx-background-color: rgb(34, 40, 49); -fx-padding: 25;"
+        stylesheets="@styles.css"
+        xmlns="http://javafx.com/javafx/25"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="sk.spse.pcservis.ui.AddComponentController">
 
     <!-- NADPIS -->
     <Label
-        text="Pridať komponent"
-        textFill="#dfd0b8"
-        style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+            text="Pridať komponent"
+            textFill="#dfd0b8"
+            style="-fx-font-size: 22px; -fx-font-weight: bold;" />
 
     <Separator style="-fx-background-color: rgb(148, 137, 121);" />
 
@@ -49,13 +50,13 @@
         <!-- Názov -->
         <Label text="Názov:" textFill="#dfd0b8"
                GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField promptText="Napr. Ryzen 7 5800X"
+        <TextField fx:id="nazov_field" promptText="Napr. Ryzen 7 5800X"
                    GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
         <!-- Kategória -->
         <Label text="Kategória:" textFill="#dfd0b8"
                GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <ComboBox prefWidth="250" promptText="Vyber kategóriu"
+        <ComboBox fx:id="kategoria_combo" prefWidth="250" promptText="Vyber kategóriu"
                   style="-fx-background-color: rgb(148, 137, 121);"
                   GridPane.columnIndex="1" GridPane.rowIndex="1">
             <items>
@@ -71,38 +72,32 @@
             </items>
         </ComboBox>
 
-        <!-- Cena -->
         <Label text="Cena (€):" textFill="#dfd0b8"
                GridPane.columnIndex="0" GridPane.rowIndex="2" />
-        <TextField promptText="Napr. 299"
+        <TextField fx:id="cena_field" promptText="Napr. 299"
                    GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-        <!-- Počet kusov -->
         <Label text="Počet kusov:" textFill="#dfd0b8"
                GridPane.columnIndex="0" GridPane.rowIndex="3" />
-        <TextField promptText="Napr. 10"
+        <TextField fx:id="pocet_field" promptText="Napr. 1 (predvolené)"
                    GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-        <!-- Výrobca -->
-        <Label text="Výrobca:" textFill="#dfd0b8"
-               GridPane.columnIndex="0" GridPane.rowIndex="4" />
-        <TextField promptText="Napr. AMD / NVIDIA / Samsung"
-                   GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
     </GridPane>
 
     <Separator style="-fx-background-color: rgb(148, 137, 121);" />
 
-    <!-- TLAČIDLÁ -->
     <HBox spacing="15" alignment="CENTER_RIGHT">
         <Button
-            prefWidth="140"
-            text="Uložiť"
-            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" />
+                prefWidth="140"
+                text="Uložiť"
+                onAction="#ulozit"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold;" />
         <Button
-            prefWidth="140"
-            text="Zrušiť"
-            style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" />
+                prefWidth="140"
+                text="Zrušiť"
+                onAction="#zrusit"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold;" />
     </HBox>
 
 </VBox>

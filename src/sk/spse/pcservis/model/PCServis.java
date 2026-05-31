@@ -3,14 +3,14 @@ import java.util.*;
 
 public class PCServis {
 
-    private Sklad sklad;
+    private static Sklad sklad;
     private PCZostava zostava = new PCZostava();
 
     public PCServis(Sklad sklad) {
-        this.sklad = new Sklad();
+        this.sklad = sklad;
     }
 
-    public PCZostava vytvorZostavuAutomaticky(double maxSuma) {
+    public static PCZostava vytvorZostavuAutomaticky(double maxSuma) {
 
         PCZostava zostava = new PCZostava();
 
