@@ -1,46 +1,49 @@
 package sk.spse.pcservis.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import sk.spse.pcservis.model.PCServis;
+import sk.spse.pcservis.model.Sklad;
 
 /**
- * Controller pre FXML súbor – obsahuje logiku aplikácie
+ * Controller pre FXML súbor – obsahuje logiku aplikácie ||getKomponentyPodlaKategorie
  */
 public class Controller {
 
     @FXML
-    private TextArea textArea;
+    private Button generuj_btn;
+    @FXML
+    private TextField generuj_TextField;
 
     @FXML
-    private void ruka() {
-        textArea.appendText("ruka pridana\n");
-        textArea.setScrollTop(Double.MAX_VALUE);
+    private TextArea vypisZostavy;
+
+    //@FXML
+    //private TableView<inventar_table> inventar_table;
+
+    // Button actions
+    public void generuj(){
+        try {
+            double suma = Double.parseDouble(generuj_TextField.getText());
+            Object zostava = PCServis.vytvorZostavuAutomaticky(suma);
+            // Zobrazíme zostavu v TextArea; použijeme toString() ak to nie je string
+            vypisZostavy.setText(zostava == null ? "" : String.valueOf(zostava));
+        } catch (NumberFormatException ex) {
+            vypisZostavy.setText("Chybný vstup pre rozpočet: prosím zadajte číslo.");
+        } catch (Exception ex) {
+            vypisZostavy.setText("Chyba pri generovaní zostavy: " + ex.getMessage());
+        }
     }
 
-    @FXML
-    private void noha() {
-        textArea.appendText("noha pridana\n");
-        textArea.setScrollTop(Double.MAX_VALUE);
-    }
+    // Sklad pre UI - bude nastavený z Application prior launch
+    private Sklad sklad;
 
-    @FXML
-    private void hlava() {
-        textArea.appendText("hlava pridana\n");
-        textArea.setScrollTop(Double.MAX_VALUE);
-    }
-
-    @FXML
-    private void trup() {
-        textArea.appendText("trup pridana\n");
-        textArea.setScrollTop(Double.MAX_VALUE);
-    }
-
-    @FXML
-    private void poskladaj() {
-        textArea.appendText("Montujem!!!\n");
-        textArea.appendText("____________\n");
-        textArea.appendText("ROBOT HOTOVÝ\n");
-        textArea.appendText("____________\n");
-        textArea.setScrollTop(Double.MAX_VALUE);
+    public void setSklad(Sklad sklad) {
+        this.sklad = sklad;
+        // TODO: inicializovať UI komponenty (TableView, ComboBoxy) podľa obsahu skladu
+        // napr. naplniť inventar_table alebo ComboBoxy
     }
 }
