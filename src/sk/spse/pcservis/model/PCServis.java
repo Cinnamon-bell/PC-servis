@@ -7,7 +7,7 @@ public class PCServis {
     private PCZostava zostava = new PCZostava();
 
     public PCServis(Sklad sklad) {
-        this.sklad = new Sklad();
+        this.sklad = sklad;
     }
 
     public static PCZostava vytvorZostavuAutomaticky(double maxSuma) {
